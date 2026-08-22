@@ -69,36 +69,58 @@ function SitPage() {
             <p className="mt-2 whitespace-pre-wrap">{data.text}</p>
           </div>
 
-          <div className="porch-card mt-5 p-5">
-            <p className="text-2xl" aria-hidden="true">
-              🌼
-            </p>
-            <p className="mt-2 font-display text-lg font-semibold">Grandma Rose says</p>
-            <p className="mt-2 whitespace-pre-wrap text-lg leading-relaxed">
-              {data.grandma_response}
-            </p>
-          </div>
+          {data.grandma_response.startsWith("Thank you for trusting me") ? (
+            <div className="porch-card mt-5 border-2 border-primary p-5">
+              <p className="font-display text-lg font-semibold">A gentle word</p>
+              <p className="mt-2 whitespace-pre-wrap text-lg leading-relaxed">
+                {data.grandma_response}
+              </p>
+              <a
+                href="tel:988"
+                className="mt-4 block rounded-2xl bg-primary px-4 py-3 text-center font-semibold text-primary-foreground"
+              >
+                Call or text 988
+              </a>
+            </div>
+          ) : (
+            <>
+              <div className="porch-card mt-5 p-5">
+                <p className="text-2xl" aria-hidden="true">
+                  🌼
+                </p>
+                <p className="mt-2 font-display text-lg font-semibold">Grandma Rose says</p>
+                <p className="mt-2 whitespace-pre-wrap text-lg leading-relaxed">
+                  {data.grandma_response}
+                </p>
+              </div>
 
-          <div className="mt-5 grid grid-cols-3 gap-2">
-            <button
-              onClick={() => setTip("Breathe in for 4, hold for 4, out for 6. Three slow rounds.")}
-              className="rounded-2xl border border-border bg-card px-2 py-3 text-sm font-semibold"
-            >
-              Breathe with me
-            </button>
-            <button
-              onClick={() => setTip("Two minutes outside. Just to the end of the block and back.")}
-              className="rounded-2xl border border-border bg-card px-2 py-3 text-sm font-semibold"
-            >
-              Walk it off
-            </button>
-            <Link
-              to="/"
-              className="rounded-2xl border border-border bg-card px-2 py-3 text-center text-sm font-semibold"
-            >
-              Write more
-            </Link>
-          </div>
+              <div className="mt-5 grid grid-cols-3 gap-2">
+                <button
+                  onClick={() =>
+                    setTip("Breathe in for 4, hold for 4, out for 6. Three slow rounds.")
+                  }
+                  className="rounded-2xl border border-border bg-card px-2 py-3 text-sm font-semibold"
+                >
+                  Breathe with me
+                </button>
+                <button
+                  onClick={() =>
+                    setTip("Two minutes outside. Just to the end of the block and back.")
+                  }
+                  className="rounded-2xl border border-border bg-card px-2 py-3 text-sm font-semibold"
+                >
+                  Walk it off
+                </button>
+                <Link
+                  to="/"
+                  className="rounded-2xl border border-border bg-card px-2 py-3 text-center text-sm font-semibold"
+                >
+                  Write more
+                </Link>
+              </div>
+            </>
+          )}
+
 
           {tip ? (
             <p className="mt-3 rounded-2xl bg-accent/50 p-3 text-center text-base">{tip}</p>
